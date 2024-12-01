@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Meta>
+  <title>Instant Actions</title>
+  <id>omegaplatinum.elin.instantactions</id>
+  <author>OmegaPlatinum</author>
+  <loadPriority>100</loadPriority>
+  <description>
+    Supports Game Version: 0.23.44
+
+    Instantly complete all in-game actions with this mod.
+
+    - Reduces the duration of all progress-based actions to instant completion.
+    - Removes progress bars and skips action animations.
+    - Does not alter world or game speed.
+
+    [h1] Difference from Turbo Actions Mod [/h1]
+    Unlike the Turbo Actions mod, which speeds up game actions by adjusting the game or world speed, Instant Actions entirely removes progress bars and animations. The gameplay speed remains unchanged, focusing solely on removing delays in specific actions.
+
+    [h1] Compatibility with Turbo Actions Mod [/h1]
+    Turbo Actions and Instant Actions can be used together or separate:
+    - [b]Turbo Actions[/b]: Speeds up actions by modifying game and world speed, retaining progress animations.
+    - [b]Instant Actions[/b]: Completely skips progress bars and animations, making actions immediate without changing game speed.
+
+    [h1] Configuration Variables [/h1]
+
+    [h2] Enable Instant Actions Mod [/h2]
+    Enable or disable the Instant Actions mod.
+    [code] Default: true [/code]
+
+    [h2] Max Progress [/h2]
+    Set the maximum progress value for actions. Lower values result in faster actions.
+    [code] Default: 1 [/code]
+
+    [h1] Configuration File Location [/h1]
+    [code] Steam\steamapps\common\Elin\BepInEx\config\omegaplatinum.elin.instantactions.cfg [/code]
+
+    ゲーム内のすべてのアクションを瞬時に完了させるMOD。
+
+    - 進行ベースのすべてのアクションの所要時間を瞬時に短縮します。
+    - プログレスバーを削除し、アクションアニメーションをスキップしてスムーズな操作性を提供します。
+    - ワールドやゲームスピードには影響を与えず、一貫したゲームプレイを保証します。
+
+    [h1] ターボアクションMODとの違い [/h1]
+    ターボアクションMODはゲームやワールドの時間を調整することでアクションを加速しますが、インスタントアクションMODはプログレスバーとアニメーションを完全に削除します。ゲームスピードはそのままで、特定のアクションの遅延をなくすことに重点を置いています。
+
+    [h1] ターボアクションMODとの併用 [/h1]
+    ターボアクションMODとインスタントアクションMODは、お互いを補完するように設計されています。それぞれ単独で使用することも、併用して高いカスタマイズ性を楽しむことも可能です:
+    - **ターボアクション**: ゲームおよびワールドスピードを変更してアクションを加速させ、進行アニメーションを維持します。
+    - **インスタントアクション**: プログレスバーとアニメーションを完全にスキップして、ゲームスピードを変更せずにアクションを即座に完了させます。
+
+    [h1] 設定変数 [/h1]
+
+    [h2] インスタントアクションMODを有効化 [/h2]
+    インスタントアクションMODを有効または無効にします。
+    [code] デフォルト: true [/code]
+
+    [h2] 最大進行値 [/h2]
+    アクションの最大進行値を設定します。値が低いほどアクションが高速になります。
+    [code] デフォルト: 1 [/code]
+
+    [h1] 設定ファイルの場所 [/h1]
+    [code] Steam\steamapps\common\Elin\BepInEx\config\omegaplatinum.elin.instantactions.cfg [/code]
+  </description>
+  <version>0.23.44</version>
+</Meta>
