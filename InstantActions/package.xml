@@ -5,21 +5,33 @@
   <author>OmegaPlatinum</author>
   <loadPriority>100</loadPriority>
   <description>
-    Supports Game Version: 0.23.45
+    Supports Game Version: 0.23.46
 
-    Instantly complete all in-game actions with this mod.
+    [h1] Important Note [/h1]
+    The Instant Actions mod does not affect the following actions:
+    [list]
+    [*]Play Music
+    [*]Torture
+    [*]Practice Dummy
+    [/list]
 
-    - Reduces the duration of all progress-based actions to instant completion.
-    - Removes progress bars and skips action animations.
-    - Does not alter world or game speed.
+    [h1] Features [/h1]
+    Instantly complete all in-game actions with this mod:
+    [list]
+    [*]Reduces the duration of all progress-based actions to instant completion.
+    [*]Removes progress bars and skips action animations.
+    [*]Does not alter world or game speed.
+    [/list]
 
     [h1] Difference from Turbo Actions Mod [/h1]
     Unlike the Turbo Actions mod, which speeds up game actions by adjusting the game or world speed, Instant Actions entirely removes progress bars and animations. The gameplay speed remains unchanged, focusing solely on removing delays in specific actions.
 
     [h1] Compatibility with Turbo Actions Mod [/h1]
-    Turbo Actions and Instant Actions can be used together or separate:
-    - [b]Turbo Actions[/b]: Speeds up actions by modifying game and world speed, retaining progress animations.
-    - [b]Instant Actions[/b]: Completely skips progress bars and animations, making actions immediate without changing game speed.
+    Turbo Actions and Instant Actions can be used together or separately:
+    [list]
+    [*][b]Turbo Actions[/b]: Speeds up actions by modifying game and world speed, retaining progress animations.
+    [*][b]Instant Actions[/b]: Completely skips progress bars and animations, making actions immediate without changing game speed.
+    [/list]
 
     [h1] Configuration Variables [/h1]
 
@@ -34,19 +46,33 @@
     [h1] Configuration File Location [/h1]
     [code] Steam\steamapps\common\Elin\BepInEx\config\omegaplatinum.elin.instantactions.cfg [/code]
 
-    ゲーム内のすべてのアクションを瞬時に完了させるMOD。
+    [h1] 日本語説明 [/h1]
 
-    - 進行ベースのすべてのアクションの所要時間を瞬時に短縮します。
-    - プログレスバーを削除し、アクションアニメーションをスキップしてスムーズな操作性を提供します。
-    - ワールドやゲームスピードには影響を与えず、一貫したゲームプレイを保証します。
+    [h1] 重要なお知らせ [/h1]
+    インスタントアクションMODは、以下のアクションには影響を与えません:
+    [list]
+    [*]演奏
+    [*]拷問
+    [*]練習用ダミー
+    [/list]
+
+    [h1] 機能 [/h1]
+    ゲーム内のすべてのアクションを瞬時に完了させるMOD:
+    [list]
+    [*]進行ベースのすべてのアクションの所要時間を瞬時に短縮します。
+    [*]プログレスバーを削除し、アクションアニメーションをスキップしてスムーズな操作性を提供します。
+    [*]ワールドやゲームスピードには影響を与えず、一貫したゲームプレイを保証します。
+    [/list]
 
     [h1] ターボアクションMODとの違い [/h1]
     ターボアクションMODはゲームやワールドの時間を調整することでアクションを加速しますが、インスタントアクションMODはプログレスバーとアニメーションを完全に削除します。ゲームスピードはそのままで、特定のアクションの遅延をなくすことに重点を置いています。
 
     [h1] ターボアクションMODとの併用 [/h1]
-    ターボアクションMODとインスタントアクションMODは、お互いを補完するように設計されています。それぞれ単独で使用することも、併用して高いカスタマイズ性を楽しむことも可能です:
-    - **ターボアクション**: ゲームおよびワールドスピードを変更してアクションを加速させ、進行アニメーションを維持します。
-    - **インスタントアクション**: プログレスバーとアニメーションを完全にスキップして、ゲームスピードを変更せずにアクションを即座に完了させます。
+    ターボアクションMODとインスタントアクションMODは、お互いを補完するように設計されています。
+    [list]
+    [*][b]ターボアクション[/b]: ゲームおよびワールドスピードを変更してアクションを加速させ、進行アニメーションを維持します。
+    [*][b]インスタントアクション[/b]: プログレスバーとアニメーションを完全にスキップして、ゲームスピードを変更せずにアクションを即座に完了させます。
+    [/list]
 
     [h1] 設定変数 [/h1]
 
@@ -61,5 +87,5 @@
     [h1] 設定ファイルの場所 [/h1]
     [code] Steam\steamapps\common\Elin\BepInEx\config\omegaplatinum.elin.instantactions.cfg [/code]
   </description>
-  <version>0.23.45</version>
+  <version>0.23.46</version>
 </Meta>

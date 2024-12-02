@@ -8,7 +8,7 @@ namespace InstantActions
     {
         internal const string Guid = "omegaplatinum.elin.instantactions";
         internal const string Name = "Instant Actions";
-        internal const string Version = "1.1.1.0";
+        internal const string Version = "1.1.2.0";
     }
 
     [BepInPlugin(GUID: ModInfo.Guid, Name: ModInfo.Name, Version: ModInfo.Version)]
@@ -19,13 +19,13 @@ namespace InstantActions
         private void Awake()
         {
             Instance = this;
-            InstantActionsConfig.LoadConfig(Config);
-            var harmony = new Harmony(ModInfo.Guid);
+            InstantActionsConfig.LoadConfig(config: Config);
+            var harmony = new Harmony(id: ModInfo.Guid);
             harmony.PatchAll();
         }
     }
 
-    [HarmonyPatch(typeof(AIAct), nameof(AIAct.MaxProgress), MethodType.Getter)]
+    [HarmonyPatch(declaringType: typeof(AIAct), methodName: nameof(AIAct.MaxProgress), methodType: MethodType.Getter)]
     internal static class AIActMaxProgressPatch
     {
         [HarmonyPrefix]
@@ -41,7 +41,7 @@ namespace InstantActions
         }
     }
 
-    [HarmonyPatch(typeof(AIProgress), nameof(AIProgress.MaxProgress), MethodType.Getter)]
+    [HarmonyPatch(declaringType: typeof(AIProgress), methodName: nameof(AIProgress.MaxProgress), methodType: MethodType.Getter)]
     internal static class AIProgressMaxProgressPatch
     {
         [HarmonyPrefix]
@@ -56,13 +56,15 @@ namespace InstantActions
         }
     }
 
-    [HarmonyPatch(typeof(Progress_Custom), nameof(Progress_Custom.MaxProgress), MethodType.Getter)]
+    [HarmonyPatch(declaringType: typeof(Progress_Custom), methodName: nameof(Progress_Custom.MaxProgress), methodType: MethodType.Getter)]
     internal static class ProgressCustomMaxProgressPatch
     {
         [HarmonyPrefix]
         public static bool Prefix(ref int __result, Progress_Custom __instance)
         {
-            if (__instance.owner?.ai is AI_PracticeDummy || __instance.owner?.ai is AI_PlayMusic)
+            if (__instance.owner?.ai is AI_PracticeDummy || 
+                __instance.owner?.ai is AI_PlayMusic || 
+                __instance.owner?.ai is AI_Torture)
             {
                 return true;
             }
@@ -77,7 +79,7 @@ namespace InstantActions
         }
     }
 
-    [HarmonyPatch(typeof(AI_Fuck), nameof(AI_Fuck.MaxProgress), MethodType.Getter)]
+    [HarmonyPatch(declaringType: typeof(AI_Fuck), methodName: nameof(AI_Fuck.MaxProgress), methodType: MethodType.Getter)]
     internal static class AIFuckMaxProgressPatch
     {
         [HarmonyPrefix]
@@ -92,7 +94,7 @@ namespace InstantActions
         }
     }
 
-    [HarmonyPatch(typeof(AI_Fish.ProgressFish), nameof(AI_Fish.ProgressFish.OnProgress))]
+    [HarmonyPatch(declaringType: typeof(AI_Fish.ProgressFish), methodName: nameof(AI_Fish.ProgressFish.OnProgress))]
     internal static class AIFishOnProgressPatch
     {
         [HarmonyPrefix]
