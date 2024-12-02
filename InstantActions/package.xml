@@ -5,7 +5,7 @@
   <author>OmegaPlatinum</author>
   <loadPriority>100</loadPriority>
   <description>
-    Supports Game Version: 0.23.44
+    Supports Game Version: 0.23.45
 
     Instantly complete all in-game actions with this mod.
 
@@ -61,5 +61,5 @@
     [h1] 設定ファイルの場所 [/h1]
     [code] Steam\steamapps\common\Elin\BepInEx\config\omegaplatinum.elin.instantactions.cfg [/code]
   </description>
-  <version>0.23.44</version>
+  <version>0.23.45</version>
 </Meta>

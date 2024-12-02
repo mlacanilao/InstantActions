@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using BepInEx;
+﻿using BepInEx;
 using HarmonyLib;
+using UnityEngine;
 
 namespace InstantActions
 {
@@ -9,7 +8,7 @@ namespace InstantActions
     {
         internal const string Guid = "omegaplatinum.elin.instantactions";
         internal const string Name = "Instant Actions";
-        internal const string Version = "1.1.0.0";
+        internal const string Version = "1.1.1.0";
     }
 
     [BepInPlugin(GUID: ModInfo.Guid, Name: ModInfo.Name, Version: ModInfo.Version)]
@@ -37,6 +36,7 @@ namespace InstantActions
                 __result = InstantActionsConfig.MaxProgress?.Value ?? 1;
                 return false;
             }
+
             return true;
         }
     }
@@ -56,76 +56,24 @@ namespace InstantActions
         }
     }
 
-    [HarmonyPatch(typeof(AI_PlayMusic), nameof(AI_PlayMusic.Run))]
-    internal static class AIPlayMusicRunPatch
-    {
-        public static bool IsMusicPlaying { get; set; } = false;
-
-        [HarmonyPrefix]
-        public static void Prefix(AI_PlayMusic __instance)
-        {
-            if (__instance.owner != null && __instance.owner.IsPC)
-            {
-                IsMusicPlaying = true;
-            }
-        }
-    }
-
     [HarmonyPatch(typeof(Progress_Custom), nameof(Progress_Custom.MaxProgress), MethodType.Getter)]
     internal static class ProgressCustomMaxProgressPatch
     {
         [HarmonyPrefix]
-        public static bool Prefix(ref int __result)
+        public static bool Prefix(ref int __result, Progress_Custom __instance)
         {
-            if (AIPlayMusicRunPatch.IsMusicPlaying)
+            if (__instance.owner?.ai is AI_PracticeDummy || __instance.owner?.ai is AI_PlayMusic)
             {
                 return true;
             }
+
             if (InstantActionsConfig.EnableInstantActions?.Value == true)
             {
                 __result = InstantActionsConfig.MaxProgress?.Value ?? 1;
                 return false;
             }
+
             return true;
-        }
-    }
-
-    [HarmonyPatch(typeof(Progress_Custom), nameof(Progress_Custom.OnProgressComplete))]
-    internal static class ProgressCustomOnProgressCompletePatch
-    {
-        [HarmonyPostfix]
-        public static void Postfix()
-        {
-            if (AIPlayMusicRunPatch.IsMusicPlaying)
-            {
-                AIPlayMusicRunPatch.IsMusicPlaying = false;
-            }
-        }
-    }
-
-    [HarmonyPatch(typeof(Progress_Custom), nameof(Progress_Custom.CancelWhenMoved), MethodType.Getter)]
-    internal static class ProgressCustomCancelWhenMovedPatch
-    {
-        [HarmonyPostfix]
-        public static void Postfix()
-        {
-            if (AIPlayMusicRunPatch.IsMusicPlaying)
-            {
-                AIPlayMusicRunPatch.IsMusicPlaying = false;
-            }
-        }
-    }
-
-    [HarmonyPatch(typeof(Progress_Custom), nameof(Progress_Custom.CancelWhenDamaged), MethodType.Getter)]
-    internal static class ProgressCustomCancelWhenDamagedPatch
-    {
-        [HarmonyPostfix]
-        public static void Postfix()
-        {
-            if (AIPlayMusicRunPatch.IsMusicPlaying)
-            {
-                AIPlayMusicRunPatch.IsMusicPlaying = false;
-            }
         }
     }
 
