@@ -8,7 +8,7 @@ namespace InstantActions
     {
         internal const string Guid = "omegaplatinum.elin.instantactions";
         internal const string Name = "Instant Actions";
-        internal const string Version = "1.1.2.0";
+        internal const string Version = "1.1.3.0";
     }
 
     [BepInPlugin(GUID: ModInfo.Guid, Name: ModInfo.Name, Version: ModInfo.Version)]
@@ -62,9 +62,10 @@ namespace InstantActions
         [HarmonyPrefix]
         public static bool Prefix(ref int __result, Progress_Custom __instance)
         {
-            if (__instance.owner?.ai is AI_PracticeDummy || 
-                __instance.owner?.ai is AI_PlayMusic || 
-                __instance.owner?.ai is AI_Torture)
+            if (__instance?.owner?.ai == null ||
+                __instance?.owner?.ai is AI_PracticeDummy || 
+                __instance?.owner?.ai is AI_PlayMusic || 
+                __instance?.owner?.ai is AI_Torture)
             {
                 return true;
             }
