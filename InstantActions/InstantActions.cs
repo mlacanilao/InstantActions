@@ -8,7 +8,7 @@ namespace InstantActions
     {
         internal const string Guid = "omegaplatinum.elin.instantactions";
         internal const string Name = "Instant Actions";
-        internal const string Version = "1.1.3.0";
+        internal const string Version = "1.2.0.0";
     }
 
     [BepInPlugin(GUID: ModInfo.Guid, Name: ModInfo.Name, Version: ModInfo.Version)]
@@ -22,6 +22,26 @@ namespace InstantActions
             InstantActionsConfig.LoadConfig(config: Config);
             var harmony = new Harmony(id: ModInfo.Guid);
             harmony.PatchAll();
+        }
+        
+        private void Update()
+        {
+            if (Input.GetKeyDown(key: InstantActionsConfig.ToggleInstantActionsKey.Value))
+            {
+                InstantActionsConfig.EnableInstantActions.Value = !InstantActionsConfig.EnableInstantActions.Value;
+
+                string status = InstantActionsConfig.EnableInstantActions.Value
+                    ? OmegaUI.__(ja: "有効", en: "enabled", cn: "启用")
+                    : OmegaUI.__(ja: "無効", en: "disabled", cn: "禁用");
+
+                ELayer.pc.TalkRaw(
+                    text: OmegaUI.__(ja: $"Instant Actions {status}。",
+                        en: $"Instant Actions {status}.",
+                        cn: $"Instant Actions {status}。"),
+                    ref1: null,
+                    ref2: null,
+                    forceSync: false);
+            }
         }
     }
 

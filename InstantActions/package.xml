@@ -21,6 +21,7 @@
     [*]Reduces the duration of all progress-based actions to instant completion.
     [*]Removes progress bars and skips action animations.
     [*]Does not alter world or game speed.
+    [*]In-game toggle key for enabling or disabling Instant Actions.
     [/list]
 
     [h1] Difference from Turbo Actions Mod [/h1]
@@ -43,6 +44,10 @@
     Set the maximum progress value for actions. Lower values result in faster actions.
     [code] Default: 1 [/code]
 
+    [h2] Instant Actions Toggle Key [/h2]
+    Key to toggle Instant Actions on or off in-game.
+    [code] Default: Y [/code]
+
     [h1] Configuration File Location [/h1]
     [code] Steam\steamapps\common\Elin\BepInEx\config\omegaplatinum.elin.instantactions.cfg [/code]
 
@@ -62,6 +67,7 @@
     [*]進行ベースのすべてのアクションの所要時間を瞬時に短縮します。
     [*]プログレスバーを削除し、アクションアニメーションをスキップしてスムーズな操作性を提供します。
     [*]ワールドやゲームスピードには影響を与えず、一貫したゲームプレイを保証します。
+    [*]ゲーム内でインスタントアクションを有効または無効に切り替えるキーを追加。
     [/list]
 
     [h1] ターボアクションMODとの違い [/h1]
@@ -84,8 +90,13 @@
     アクションの最大進行値を設定します。値が低いほどアクションが高速になります。
     [code] デフォルト: 1 [/code]
 
+    [h2] インスタントアクション切り替えキー [/h2]
+    ゲーム内でインスタントアクションをオンまたはオフに切り替えるキーを設定します。
+    [code] デフォルト: Y [/code]
+
     [h1] 設定ファイルの場所 [/h1]
     [code] Steam\steamapps\common\Elin\BepInEx\config\omegaplatinum.elin.instantactions.cfg [/code]
   </description>
+  <tags>Cheat</tags>
   <version>0.23.54</version>
 </Meta>
