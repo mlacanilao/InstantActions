@@ -8,7 +8,7 @@ namespace InstantActions
     {
         internal const string Guid = "omegaplatinum.elin.instantactions";
         internal const string Name = "Instant Actions";
-        internal const string Version = "1.2.0.0";
+        internal const string Version = "1.2.1.0";
     }
 
     [BepInPlugin(GUID: ModInfo.Guid, Name: ModInfo.Name, Version: ModInfo.Version)]
@@ -31,11 +31,11 @@ namespace InstantActions
                 InstantActionsConfig.EnableInstantActions.Value = !InstantActionsConfig.EnableInstantActions.Value;
 
                 string status = InstantActionsConfig.EnableInstantActions.Value
-                    ? OmegaUI.__(ja: "有効", en: "enabled", cn: "启用")
-                    : OmegaUI.__(ja: "無効", en: "disabled", cn: "禁用");
+                    ? __(ja: "有効", en: "enabled", cn: "启用")
+                    : __(ja: "無効", en: "disabled", cn: "禁用");
 
                 ELayer.pc.TalkRaw(
-                    text: OmegaUI.__(ja: $"Instant Actions {status}。",
+                    text: __(ja: $"Instant Actions {status}。",
                         en: $"Instant Actions {status}.",
                         cn: $"Instant Actions {status}。"),
                     ref1: null,
@@ -43,21 +43,46 @@ namespace InstantActions
                     forceSync: false);
             }
         }
+        
+        private static string __(string ja = "", string en = "", string cn = "")
+        {
+            if (Lang.langCode == "JP")
+            {
+                return ja ?? en;
+            }
+
+            if (Lang.langCode == "CN")
+            {
+                return cn ?? en;
+            }
+
+            return en;
+        }
+        
+        public static void Log(object payload)
+        {
+            Instance.Logger.LogInfo(data: payload);
+        }
     }
 
     [HarmonyPatch(declaringType: typeof(AIAct), methodName: nameof(AIAct.MaxProgress), methodType: MethodType.Getter)]
     internal static class AIActMaxProgressPatch
     {
         [HarmonyPrefix]
-        public static bool Prefix(ref int __result)
+        public static bool Prefix(AIAct __instance, ref int __result)
         {
-            if (InstantActionsConfig.EnableInstantActions?.Value == true)
+            if (InstantActionsConfig.EnableInstantActions?.Value == false)
             {
-                __result = InstantActionsConfig.MaxProgress?.Value ?? 1;
-                return false;
+                return true;
             }
 
-            return true;
+            if (__instance?.owner?.IsPC == false)
+            {
+                return true;
+            }
+            
+            __result = InstantActionsConfig.MaxProgress?.Value ?? 1;
+            return false;
         }
     }
 
@@ -65,14 +90,20 @@ namespace InstantActions
     internal static class AIProgressMaxProgressPatch
     {
         [HarmonyPrefix]
-        public static bool Prefix(ref int __result)
+        public static bool Prefix(AIProgress __instance, ref int __result)
         {
-            if (InstantActionsConfig.EnableInstantActions?.Value == true)
+            if (InstantActionsConfig.EnableInstantActions?.Value == false)
             {
-                __result = InstantActionsConfig.MaxProgress?.Value ?? 1;
-                return false;
+                return true;
             }
-            return true;
+
+            if (__instance?.owner?.IsPC == false)
+            {
+                return true;
+            }
+            
+            __result = InstantActionsConfig.MaxProgress?.Value ?? 1;
+            return false;
         }
     }
 
@@ -82,6 +113,16 @@ namespace InstantActions
         [HarmonyPrefix]
         public static bool Prefix(ref int __result, Progress_Custom __instance)
         {
+            if (InstantActionsConfig.EnableInstantActions?.Value == false)
+            {
+                return true;
+            }
+
+            if (__instance?.owner?.IsPC == false)
+            {
+                return true;
+            }
+            
             if (__instance?.owner?.ai == null ||
                 __instance?.owner?.ai is AI_PracticeDummy || 
                 __instance?.owner?.ai is AI_PlayMusic || 
@@ -89,14 +130,9 @@ namespace InstantActions
             {
                 return true;
             }
-
-            if (InstantActionsConfig.EnableInstantActions?.Value == true)
-            {
-                __result = InstantActionsConfig.MaxProgress?.Value ?? 1;
-                return false;
-            }
-
-            return true;
+            
+            __result = InstantActionsConfig.MaxProgress?.Value ?? 1;
+            return false;
         }
     }
 
@@ -104,14 +140,20 @@ namespace InstantActions
     internal static class AIFuckMaxProgressPatch
     {
         [HarmonyPrefix]
-        public static bool Prefix(ref int __result)
+        public static bool Prefix(AI_Fuck __instance, ref int __result)
         {
-            if (InstantActionsConfig.EnableInstantActions?.Value == true)
+            if (InstantActionsConfig.EnableInstantActions?.Value == false)
             {
-                __result = InstantActionsConfig.MaxProgress?.Value ?? 1;
-                return false;
+                return true;
             }
-            return true;
+            
+            if (__instance?.owner?.IsPC == false)
+            {
+                return true;
+            }
+            
+            __result = InstantActionsConfig.MaxProgress?.Value ?? 1;
+            return false;
         }
     }
 
@@ -121,10 +163,22 @@ namespace InstantActions
         [HarmonyPrefix]
         public static void Prefix(AI_Fish.ProgressFish __instance)
         {
-            if (InstantActionsConfig.EnableInstantActions?.Value == true)
+            if (InstantActionsConfig.EnableInstantActions?.Value == false)
             {
-                __instance.hit = 100;
+                return;
             }
+            
+            if (__instance?.owner?.IsPC == false)
+            {
+                return;
+            }
+
+            if (__instance is null)
+            {
+                return;
+            }
+            
+            __instance.hit = 100;
         }
     }
 }
